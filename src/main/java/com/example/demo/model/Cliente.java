@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.ClienteDto;
+import com.example.demo.dto.ClienteAtualizacaoDto;
+import com.example.demo.dto.ClienteCadastroDto;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,19 +17,31 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 
 public class Cliente {
-	public Cliente(ClienteDto data) {
+	public Cliente(ClienteCadastroDto data) {
 		this.nome = data.nome();
-		this.idade = data.idade();
 		this.telefone = data.telefone();
-		this.endereco = new Endereco();
+		this.endereco = data.endereco();
 	}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int idade;
 	private String nome;
 	private String telefone;
 	
 	@Embedded
 	private Endereco endereco;
+
+	public void atualizarInformacoes(ClienteAtualizacaoDto data) {
+		if(data.nome()!=null) {
+			this.nome = data.nome();
+		}
+		
+		if(data.telefone()!=null) {
+			this.telefone = data.telefone();
+		}
+		
+		if(data.endereco()!=null) {
+			this.endereco = data.endereco();
+		}
+	}
 }

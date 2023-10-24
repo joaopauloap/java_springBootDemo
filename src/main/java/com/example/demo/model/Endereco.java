@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import com.example.demo.dto.ClienteDto;
-
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,11 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Endereco {
 
-	private String logradouro;
-	private String bairro;
-	private String cep;
-	private String numero;
-	private String complemento;
-	private String cidade;
-	private String uf;
+	public String logradouro;
+	public String bairro;
+	public String cep;
+	public int numero;
+	public String complemento;
+	public String cidade;
+	public String uf;
 }
